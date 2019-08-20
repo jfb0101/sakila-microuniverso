@@ -1,0 +1,45 @@
+{
+  "name": "sakila",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^4.3.1",
+    "core-js": "^3.1.4",
+    "css-loader": "^3.1.0",
+    "font-awesome": "^4.7.0",
+    "http-server": "^0.11.1",
+    "jquery": "^3.4.1",
+    "jquery-ui": "^1.12.1",
+    "knockout": "^3.5.0",
+    "lodash": "^4.17.15",
+    "moment-timezone": "^0.5.26",
+    "popper.js": "^1.15.0",
+    "requirejs": "^2.3.6",
+    "rxjs": "^6.5.2",
+    "sammy": "^0.7.6",
+    "socket.io-client": "^2.2.0",
+    "style-loader": "^0.23.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "copy-webpack-plugin": "^5.0.3",
+    "file-loader": "^4.0.0",
+    "html-loader": "^0.5.5",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2"
+  }
+}

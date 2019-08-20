@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="films.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div data-bind="visible: currentState() == 'LIST'">
+            <button class="btn btn-primary" data-bind="click: createNewFilm">
+                Create new film
+            </button>
+
+            <table class="table">
+                <thead>
+
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Release Year
+                    </th>
+
+                </thead>
+
+                <tbody data-bind="foreach: films">
+                    <tr>
+                        <td data-bind="text: filmId"></td>
+                        <td data-bind="text: title"></td>
+                        <td data-bind="text: description"></td>
+                        <td data-bind="text: releaseYear"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div data-bind="visible: currentState() == 'CREATE'">
+            <form action="#" data-bind="with: film">
+                <div class="form-group">
+                    <label for="">Title</label>
+                    <input data-bind="value: title" type="text" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Description</label>
+                    <textarea   
+                    class="form-control"
+                    data-bind="value: description"
+                    name="" id="" cols="30" rows="10"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="">Release Year</label>
+                    <input data-bind="value: releaseYear" type="text" class="form-control">
+                </div>
+
+                <button class="btn btn-primary"
+                    data-bind="click: $root.save">
+                    Save
+                </button>
+
+                <button class="btn btn-secondary"
+                    data-bind="click: $root.cancel">
+                    Cancel
+                </button>
+
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

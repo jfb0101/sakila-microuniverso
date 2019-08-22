@@ -17,6 +17,8 @@ class FilmsViewModel {
         this.currentState = ko.observable('')
         this.film = ko.observable({})
 
+        this.specialFeatures = ko.observableArray([])
+
         this.createFilmObservable()
 
         this.viewFilms()
@@ -40,12 +42,18 @@ class FilmsViewModel {
        this.currentState('CREATE')
        this.updateLanguageList()
        this.createFilmObservable()
+       this.updateSpecialFeatures()
 
     }
 
     save = async () => {
         try {
             let filmToSave = ko.toJS(this.film)
+
+            filmToSave.specialFeatures = 
+                filmToSave.selectedSpecialFeatures.join()
+
+            delete filmToSave.selectedSpecialFeatures
         
             await filmApiService.save(filmToSave)
             
@@ -71,8 +79,14 @@ class FilmsViewModel {
             title: undefined,
             description: undefined,
             releaseYear: undefined,
-            languageId: undefined
+            languageId: undefined,
+            selectedSpecialFeatures: ko.observableArray([])
         })
+    }
+
+    updateSpecialFeatures = async () => {
+        this.specialFeatures(
+            (await filmApiService.listSpecialFeatures()))
     }
 
 }

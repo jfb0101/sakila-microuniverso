@@ -1,5 +1,6 @@
 import $ from 'jquery'
 import API from './api'
+import * as _ from 'lodash'
 
 class FilmApiService {
     listAll() {
@@ -14,7 +15,31 @@ class FilmApiService {
     }
 
     listSpecialFeatures() {
+        return new Promise(async (resolve,reject) => {
+            let filter = {
+                fields: ['specialFeatures']
+            }
 
+            let specialFeatures = []
+
+            $.ajax(`${API}/Films?filter=${JSON.stringify(filter)}`)
+            .done(response => {
+                specialFeatures = 
+                    response.reduce((array,currentItem) => {
+                        let currentSpecialFeaturesArray = 
+                        currentItem.specialFeatures ?
+                        currentItem.specialFeatures.split(",") :
+                        []
+
+                        array.push(...currentSpecialFeaturesArray)
+
+                        return array
+                    },[])
+
+
+                resolve(_.uniq(specialFeatures))
+            }).fail(reject)
+        })
     }
 
     save(film) {

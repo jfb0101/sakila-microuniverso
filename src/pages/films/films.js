@@ -7,17 +7,17 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js'
 
 import filmApiService from '../../js/services/film-api-service'
+import languageApiService from '../../js/services/language-api-service'
 
 class FilmsViewModel {
     
     constructor() {
         this.films = ko.observableArray([])
+        this.languageList = ko.observableArray([])
         this.currentState = ko.observable('')
-        this.film = ko.observable({
-            title:undefined,
-            description:undefined,
-            releaseYear:undefined
-        })
+        this.film = ko.observable({})
+
+        this.createFilmObservable()
 
         this.viewFilms()
     }
@@ -38,11 +38,8 @@ class FilmsViewModel {
 
     createNewFilm = () => {
        this.currentState('CREATE')
-       this.film({
-        title: undefined,
-        description: undefined,
-        releaseYear: undefined
-       })
+       this.updateLanguageList()
+       this.createFilmObservable()
 
     }
 
@@ -61,6 +58,21 @@ class FilmsViewModel {
 
     cancel = () => {
         this.viewFilms()
+    }
+
+    updateLanguageList = async () => {
+        this.languageList(
+            (await languageApiService.listAll())
+        )
+    }
+
+    createFilmObservable = () => {
+        this.film({
+            title: undefined,
+            description: undefined,
+            releaseYear: undefined,
+            languageId: undefined
+        })
     }
 
 }

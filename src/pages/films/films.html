@@ -68,6 +68,16 @@
                     <input data-bind="value: releaseYear" type="text" class="form-control">
                 </div>
 
+                <div class="form-group">
+                    <label for="">Language</label>
+                    <select name="" id="" class="form-control"
+                        data-bind='options: $root.languageList, 
+                        optionsText: "name",
+                        optionsValue: "languageId",
+                        value: languageId'
+                    ></select>
+                </div>
+
                 <button class="btn btn-primary"
                     data-bind="click: $root.save">
                     Save

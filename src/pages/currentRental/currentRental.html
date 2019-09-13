@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="currentRental.js"></script>
+</head>
+<body>
+    <div class="container">
+
+        <client-selector></client-selector>
+
+        <div class="jumbotron">
+            <h1>
+                Current Rental
+            </h1>
+
+            <button class="btn btn-primary"
+                data-bind="click: saveRental">
+                Finish
+            </button>
+            <button class="btn btn-secondary">
+                Clear
+            </button>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Rental rate
+                    </th>
+                    <th>
+                        Rental duration
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: films">
+                <tr>
+                    <td data-bind="text: title">
+
+                    </td>
+                    <td>
+                        <span  data-bind="visible: !editing(), text: rentalRate"></span>
+
+                        <input data-bind="visible: editing(),value: rentalRate, event: {keyup: $root.onKeyPressedInFilmInput}",
+                             
+                            type="text"
+                            class="form-control">
+                    </td>
+                    <td>
+                       <span data-bind="visible: !editing(), text: rentalDuration"></span> 
+                       <input data-bind="visible: editing(), value: rentalDuration, event: {keyup: $root.onKeyPressedInFilmInput}"
+                            type="text"
+                            class="form-control">
+                    </td>
+                    <td>
+                        <a href="#" 
+                            data-bind="click: $root.edit">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

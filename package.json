@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npx webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -11,6 +12,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "babel-polyfill": "^6.26.0",
+    "backbone": "^1.4.0",
     "bootstrap": "^4.3.1",
     "core-js": "^3.1.4",
     "css-loader": "^3.1.0",

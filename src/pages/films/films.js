@@ -6,8 +6,14 @@ import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 import '../../../node_modules/bootstrap/dist/js/bootstrap.min.js'
 
+import '../../../node_modules/font-awesome/css/font-awesome.min.css'
+
 import filmApiService from '../../js/services/film-api-service'
 import languageApiService from '../../js/services/language-api-service'
+import filmDb from '../../js/db/film-db'
+import {startSyncFilms} from '../../js/sync/synchronizer'
+import currentRentalDb from '../../js/db/current-rental-db';
+import '../../components/client-selector/client-selector'
 
 class FilmsViewModel {
     
@@ -22,20 +28,22 @@ class FilmsViewModel {
         this.createFilmObservable()
 
         this.viewFilms()
+
+        startSyncFilms().subscribe(() => {
+            this.updateFilms()
+        })
+
     }
 
     viewFilms = async () => {
         this.currentState('LIST')
+        this.updateFilms()
+    }
 
-        let films = await filmApiService.listAll()
+    updateFilms = async () => {
+        let films = await filmDb.loadAllFilms()
 
         this.films(films)
-
-        // sem usar o await (usando then)
-        // filmApiService.listAll().then(films => {
-        //     this.films(films)
-        // })
-
     }
 
     createNewFilm = () => {
@@ -87,6 +95,20 @@ class FilmsViewModel {
     updateSpecialFeatures = async () => {
         this.specialFeatures(
             (await filmApiService.listSpecialFeatures()))
+    }
+
+    putFilmInCurrentRental = async film => {
+        const filmToSave = {
+            filmId: film.filmId,
+            title: film.title,
+            rentalRate: film.rentalRate,
+            rentalDuration: film.rentalDuration
+        }
+
+        await currentRentalDb
+            .putFilmInCurrentRental(filmToSave)
+        
+        window.location.href = "/currentRental.html"
     }
 
 }

@@ -2,7 +2,10 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        films: './src/pages/films/films.js'
+        films: './src/pages/films/films.js',
+        currentRental: './src/pages/currentRental/currentRental.js',
+        registerFilmsWithBackbone: './src/pages/register-films-with-backbone/register-films-with-backbone.js',
+        listFilmsWithBackbone: './src/pages/list-films-with-backbone/list-films-with-backbone.js'
     },
     module: {
         rules: [
@@ -32,7 +35,10 @@ module.exports = {
     devtool: 'source-map',
     plugins: [
         new CopyPlugin([
-            { from: 'src/pages/films/films.html', to: './' }
+            { from: 'src/pages/films/films.html', to: './' },
+            { from: 'src/pages/currentRental/currentRental.html',to: './'},
+            { from: 'src/pages/register-films-with-backbone/register-films-with-backbone.html', to: './'},
+            { from: 'src/pages/list-films-with-backbone/list-films-with-backbone.html'}
         ])
     ]
 }

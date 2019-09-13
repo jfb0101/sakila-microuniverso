@@ -13,7 +13,8 @@
 
 <body>
     <div class="container">
-
+        <client-selector></client-selector>
+        
         <div data-bind="visible: currentState() == 'LIST'">
             <button class="btn btn-primary" data-bind="click: createNewFilm">
                 Create new film
@@ -37,6 +38,9 @@
                     <th>
                         Special Features
                     </th>
+                    <th>
+
+                    </th>
 
                 </thead>
 
@@ -47,6 +51,12 @@
                         <td data-bind="text: description"></td>
                         <td data-bind="text: releaseYear"></td>
                         <td data-bind="text: specialFeatures"></td>
+                        <td>
+                            <a href="#" 
+                                data-bind="click: $root.putFilmInCurrentRental">
+                                <i class="fa fa-window-restore"></i>
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

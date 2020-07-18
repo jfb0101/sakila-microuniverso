@@ -21,7 +21,7 @@
     "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
     "knockout": "^3.5.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "moment-timezone": "^0.5.26",
     "popper.js": "^1.15.0",
     "requirejs": "^2.3.6",
